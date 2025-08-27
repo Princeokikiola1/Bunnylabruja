@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import {  BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LinkTreePage from "./pages/LinkTreePage";
 import SpellBookingUI from "./pages/SpellBookingUI"; // adjust path if needed
 import InfernoBotanicaPage from "./pages/InfernoBotanicaPage";
