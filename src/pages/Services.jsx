@@ -177,7 +177,7 @@ export default function ServicesPage() {
             Terms & Conditions
           </a>
         </div>
-        <p className="mt-3 text-xs tracking-wide text-gray-500">Powered by GoDaddy Ario</p>
+        <p className="mt-3 text-xs tracking-wide text-gray-500">Powered by Bunnylabruja</p>
       </footer>
     </div>
   );
