@@ -202,15 +202,7 @@ export default function ShopPage() {
         </main>
       </div>
 
-      {/* Floating WhatsApp Button */}
-      <a
-        href="https://wa.me/message/6UEZI47SDGS5A1"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg shadow-green-600/50 transition transform hover:scale-110"
-      >
-        <FaWhatsapp size={28} />
-      </a>
+   
     </div>
   );
 }
