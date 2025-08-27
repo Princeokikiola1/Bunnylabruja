@@ -152,7 +152,7 @@ export default function ServicesPage() {
               Contact
             </a>
          <a
-  href="mailto:inferno.botanica@gmail.com?subject=Service%20Booking%20Inquiry"
+  href="mailto:Bunnylabruja1a@gmail.com?subject=Service%20Booking%20Inquiry"
   className="px-4 py-2 rounded-lg text-sm font-medium bg-neutral-800 hover:bg-neutral-700 transition"
 >
   Email
