@@ -1,4 +1,4 @@
-import {  BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import LinkTreePage from "./pages/LinkTreePage";
 import SpellBookingUI from "./pages/SpellBookingUI"; // adjust path if needed
 import InfernoBotanicaPage from "./pages/InfernoBotanicaPage";
@@ -8,7 +8,7 @@ import "./App.css";
 
 function App() {
   return (
-    <Router>
+     <HashRouter>
       <Routes>
         <Route path="/" element={<LinkTreePage />} />
             <Route path="/shop" element={<ShopPage />} />
@@ -16,7 +16,7 @@ function App() {
            <Route path="/inferno" element={<InfernoBotanicaPage />} />
           <Route path="/services" element={<ServicesPage />} />
       </Routes>
-    </Router>
+    </HashRouter>
   );
 }
 
