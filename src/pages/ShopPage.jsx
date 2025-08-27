@@ -2,6 +2,7 @@ import { useState, memo } from "react";
 import { categories, products as allProducts } from "../data";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
+import { FaWhatsapp } from "react-icons/fa";
 
 const MemoizedNavbar = memo(Navbar);
 
@@ -12,7 +13,7 @@ export default function ShopPage() {
 
   const itemsPerPage = 12;
 
-  // Filter products by category
+  // Filter products
   const filteredProducts =
     activeCategory === "All Products"
       ? allProducts
@@ -36,6 +37,19 @@ export default function ShopPage() {
   const totalPages = Math.ceil(sortedProducts.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedProducts = sortedProducts.slice(startIndex, startIndex + itemsPerPage);
+
+  // Function: Send details to WhatsApp
+  const sendToWhatsApp = (product) => {
+    const message = `Hello 👋, I'm interested in purchasing this item:\n\n` +
+      `📦 Product: ${product.name}\n` +
+      `💲 Price: ${product.price}\n` +
+      (product.oldPrice ? `❌ Old Price: ${product.oldPrice}\n` : "") +
+      `🖼️ Image: ${window.location.origin}${product.img}\n\n` +
+      `Please guide me with the next steps.`;
+
+    const whatsappURL = `https://wa.me/message/6UEZI47SDGS5A1?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, "_blank");
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black via-[#0a0a0a] to-black text-white pt-24">
@@ -103,85 +117,68 @@ export default function ShopPage() {
           </div>
 
           {/* Products Grid */}
-          <motion.div
-            layout
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-          >
-            {paginatedProducts.map((p) => {
-              const whatsappLink = `https://wa.me/message/6UEZI47SDGS5A1?text=${encodeURIComponent(
-                `Hello, I'm interested in purchasing:\n\n📦 Product: ${p.name}\n💲 Price: ${p.price}\n🖼️ Image: ${p.img}\n\nPlease guide me with payment details.`
-              )}`;
+          <motion.div layout className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {paginatedProducts.map((p) => (
+              <motion.div
+                key={p.id}
+                layout
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                whileHover={{ y: -6, scale: 1.02 }}
+                className="relative group rounded-2xl overflow-hidden border border-gray-800 bg-gradient-to-b from-gray-900/60 to-black/80 shadow-xl hover:shadow-red-600/30 transition-all block"
+              >
+                {/* SALE Badge */}
+                {p.sale && (
+                  <span className="absolute top-3 left-3 bg-gradient-to-r from-red-500 to-pink-500 text-[10px] font-bold uppercase px-2 py-1 rounded-full shadow-md animate-pulse">
+                    SALE
+                  </span>
+                )}
 
-              const Wrapper = p.status === "Out of Stock" ? motion.div : motion.a;
-              const wrapperProps =
-                p.status === "Out of Stock"
-                  ? {}
-                  : {
-                      href: whatsappLink,
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                    };
-
-              return (
-                <Wrapper
-                  key={p.id}
-                  {...wrapperProps}
-                  layout
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  whileHover={{ y: -6, scale: 1.02 }}
-                  className="relative group rounded-2xl overflow-hidden border border-gray-800 bg-gradient-to-b from-gray-900/60 to-black/80 shadow-xl hover:shadow-red-600/30 transition-all block"
-                >
-                  {/* SALE Badge */}
-                  {p.sale && (
-                    <span className="absolute top-3 left-3 bg-gradient-to-r from-red-500 to-pink-500 text-[10px] font-bold uppercase px-2 py-1 rounded-full shadow-md animate-pulse">
-                      SALE
-                    </span>
-                  )}
-
-                  {/* Out of stock overlay */}
-                  {p.status === "Out of Stock" && (
-                    <div className="absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center text-red-400 font-bold text-sm">
-                      OUT OF STOCK
-                    </div>
-                  )}
-
-                  {/* Image */}
-                  <div className="overflow-hidden">
-                    <img
-                      src={p.img}
-                      alt={p.name}
-                      className="w-full h-56 object-cover transform group-hover:scale-110 transition-transform duration-500"
-                    />
+                {/* Out of stock overlay */}
+                {p.status === "Out of Stock" && (
+                  <div className="absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center text-red-400 font-bold text-sm">
+                    OUT OF STOCK
                   </div>
+                )}
 
-                  {/* Info */}
-                  <div className="p-4 space-y-2">
-                    <h3 className="text-sm font-medium line-clamp-2 group-hover:text-red-400 transition">
-                      {p.name}
-                    </h3>
-                    <div className="flex items-center space-x-2">
-                      {p.oldPrice && (
-                        <span className="text-gray-500 line-through text-xs">
-                          {p.oldPrice}
-                        </span>
-                      )}
-                      <span className="text-lg font-semibold text-red-400">
-                        {p.price}
+                {/* Image */}
+                <div className="overflow-hidden">
+                  <img
+                    src={p.img}
+                    alt={p.name}
+                    className="w-full h-56 object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+
+                {/* Info */}
+                <div className="p-4 space-y-2">
+                  <h3 className="text-sm font-medium line-clamp-2 group-hover:text-red-400 transition">
+                    {p.name}
+                  </h3>
+                  <div className="flex items-center space-x-2">
+                    {p.oldPrice && (
+                      <span className="text-gray-500 line-through text-xs">
+                        {p.oldPrice}
                       </span>
-                    </div>
+                    )}
+                    <span className="text-lg font-semibold text-red-400">
+                      {p.price}
+                    </span>
                   </div>
 
-                  {/* WhatsApp hint */}
+                  {/* Order Button */}
                   {p.status !== "Out of Stock" && (
-                    <span className="absolute bottom-3 right-3 px-3 py-1 text-[10px] rounded-lg bg-green-600/80 text-white opacity-0 group-hover:opacity-100 transition">
-                      Tap to order on WhatsApp
-                    </span>
+                    <button
+                      onClick={() => sendToWhatsApp(p)}
+                      className="mt-3 w-full px-4 py-2 rounded-lg bg-green-600 hover:bg-green-700 text-white text-sm font-medium transition"
+                    >
+                      Order via WhatsApp
+                    </button>
                   )}
-                </Wrapper>
-              );
-            })}
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
 
           {/* Pagination */}
@@ -204,6 +201,16 @@ export default function ShopPage() {
           )}
         </main>
       </div>
+
+      {/* Floating WhatsApp Button */}
+      <a
+        href="https://wa.me/message/6UEZI47SDGS5A1"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg shadow-green-600/50 transition transform hover:scale-110"
+      >
+        <FaWhatsapp size={28} />
+      </a>
     </div>
   );
 }

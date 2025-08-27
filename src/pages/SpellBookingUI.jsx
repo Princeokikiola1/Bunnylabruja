@@ -390,7 +390,7 @@ export default function SpellBookingUI() {
 
           <li>
             <strong>📞 Important:</strong> My help line (
-            <span className="font-mono">(754) 715-7095</span>) gets many messages. My
+            <span className="font-mono">+1 (951) 543-3915</span>) gets many messages. My
             business number is for current clients only (priority replies). Help line
             texts may take up to a week.
           </li>
