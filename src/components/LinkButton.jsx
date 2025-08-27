@@ -5,7 +5,6 @@ export default function LinkButton({ text, url, icon }) {
   return (
     <motion.a
       href={url}
-      target="_blank"
       rel="noopener noreferrer"
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
