@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import "./calendarCustom.css"; // ✅ custom CSS overrides
+import "./calendarCustom.css"; // ✅ your calendar overrides
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function ReadingBooking() {
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState("");
   const [activeImage, setActiveImage] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
   const images = ["/reading1.png", "/reading2.jpg"];
 
@@ -18,7 +20,7 @@ export default function ReadingBooking() {
 
   const handleBooking = () => {
     if (!time) {
-      alert("Please select a time slot.");
+      setShowModal(true); // ✅ show modal instead of alert
       return;
     }
 
@@ -32,7 +34,7 @@ export default function ReadingBooking() {
   };
 
   return (
-    <div className="bg-black min-h-screen text-white px-6 py-12">
+    <div className="bg-black min-h-screen text-white px-6 py-12 relative">
       {/* Header */}
       <h1 className="text-center text-3xl md:text-4xl font-bold mb-10 text-red-600">
         Book Your Consultation Now
@@ -102,7 +104,9 @@ export default function ReadingBooking() {
               <ul className="list-disc list-inside space-y-1">
                 <li>Consultations are not rushed (2–3 hrs).</li>
                 <li>Available via Phone or Video/Voice message (your choice).</li>
-                <li>Please book only when ready to move forward with spellwork.</li>
+                <li>
+                  Please book only when ready to move forward with spellwork.
+                </li>
               </ul>
             </div>
 
@@ -177,6 +181,39 @@ export default function ReadingBooking() {
         🚨 Important: Do not book a consultation before purchasing. Unauthorized
         bookings will be blocked.
       </p>
+
+      {/* 🔴 Animated Modal */}
+      <AnimatePresence>
+        {showModal && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 px-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="bg-gray-900 rounded-2xl shadow-2xl max-w-sm w-full p-6 text-center relative"
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 100, opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            >
+              <h2 className="text-2xl font-bold text-red-500 mb-3">
+                ⚠️ Hold On!
+              </h2>
+              <p className="text-gray-300">
+                Please select a time slot before booking your consultation.
+              </p>
+              <button
+                onClick={() => setShowModal(false)}
+                className="mt-6 w-full py-2 rounded-lg font-bold bg-red-600 hover:bg-red-500 transition"
+              >
+                Got it
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
