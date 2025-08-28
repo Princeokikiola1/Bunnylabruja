@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import "./calendarCustom.css"; // ✅ custom CSS overrides
 
 export default function ReadingBooking() {
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState("");
   const [activeImage, setActiveImage] = useState(0);
 
-  const images = [
-    "/reading1.png",
-    "/reading2.jpg",
-    // "https://via.placeholder.com/500x400?text=Spiritual+Guidance",
-  ];
+  const images = ["/reading1.png", "/reading2.jpg"];
 
   const timeSlots = {
     Morning: ["9:00 AM", "10:30 AM", "11:30 AM"],
@@ -104,20 +101,16 @@ export default function ReadingBooking() {
               </h3>
               <ul className="list-disc list-inside space-y-1">
                 <li>Consultations are not rushed (2–3 hrs).</li>
-                <li>
-                  Available via Phone or Video/Voice message (your choice).
-                </li>
-                <li>
-                  Please book only when ready to move forward with spellwork.
-                </li>
+                <li>Available via Phone or Video/Voice message (your choice).</li>
+                <li>Please book only when ready to move forward with spellwork.</li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-bold text-red-500 mb-1">❌ Refund Policy</h3>
               <p>
-                Refunds available if requested before session is completed. A
-                $20 processing fee applies.
+                Refunds available if requested before session is completed. A $20
+                processing fee applies.
               </p>
             </div>
           </div>
@@ -139,7 +132,7 @@ export default function ReadingBooking() {
             onChange={setDate}
             value={date}
             minDate={new Date()}
-            className="bg-white rounded-lg p-2"
+            className="custom-calendar"
           />
 
           {/* Time Slots */}
@@ -170,7 +163,7 @@ export default function ReadingBooking() {
           </div>
         </div>
 
-        Confirm Button
+        {/* Confirm Button */}
         <button
           onClick={handleBooking}
           className="mt-6 w-full py-3 rounded-lg font-bold bg-gradient-to-r from-red-500 to-black hover:scale-105 transition"
