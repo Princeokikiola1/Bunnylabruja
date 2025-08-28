@@ -13,55 +13,55 @@ export default function ProductPage() {
 
   const spells = {
     "Traditional Love/Sweetening": {
-      price: 350,
+      price: 130,
       desc: `A traditional love spell is considered light working (white magic).
       Best for sweetening relationships, healing toxic cycles, and restoring harmony.
       Ideal if you’re already in a relationship but want forgiveness, softness,
       or more loving energy flowing between you.`,
     },
     "Obsession Spell": {
-      price: 450,
+      price: 185,
       desc: `Obsession work is gray magic — heavier and deeper than love sweetening.
       It’s excellent for reconciliation, reigniting passion, and no-contact situations.
       This working pulls someone’s mind, energy, and thoughts toward you intensely,
       making them crave closeness and attention.`,
     },
     "Domination Spell": {
-      price: 480,
+      price: 399,
       desc: `A darker form of work where you take control energetically.
       Best used when you want authority, influence, and compliance.
       The target feels compelled to act in alignment with your will,
       bending situations strongly in your favor.`,
     },
-    Binding: {
-      price: 630,
+    "Combine with a spell or alone Binding": {
+      price: 70,
       desc: `Binding spells tie individuals together energetically.
       They ensure the connection cannot be easily broken or severed.
       This is perfect for long-term relationships, karmic bonds,
       or situations where you don’t want someone slipping away.`,
     },
     "Break Up Hex / 3rd Party Removal": {
-      price: 600,
+      price: 299,
       desc: `This is targeted magic used to separate couples,
       remove third parties, and break destructive attachments.
       It clears away people blocking your love path, destroying interference
       so you can have clarity and space with your person.`,
     },
     "Sex Spells": {
-      price: 540,
+      price: 225,
       desc: `Sexual energy workings heighten physical attraction and intimacy.
       They restore passion in stale connections, ignite chemistry,
       and amplify desire between you and your target.`,
     },
-    "Attraction Spell": {
-      price: 710,
+    "Personal Attraction Spell": {
+      price: 100,
       desc: `Draw attention, admirers, and opportunities effortlessly.
       Attraction work boosts your magnetic pull so others notice you,
       whether for love, romance, or social charm. Perfect if you want
       to feel irresistible to those around you.`,
     },
     "Illusion Spell": {
-      price: 360,
+      price: 200,
       desc: `Illusion workings bend perceptions — influencing how others see you.
       It can make you appear more desirable, trustworthy, or irresistible,
       shifting perspectives in your favor and shaping outcomes subtly.`,
