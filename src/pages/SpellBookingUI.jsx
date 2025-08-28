@@ -43,7 +43,7 @@ export default function SpellBookingUI() {
             </h2>
 
             <div className="flex justify-end">
-              <Button  onClick={() => navigate("/shop")}
+              <Button  onClick={() => navigate("/custom-workings")}
                 className="relative px-6 py-3 bg-gradient-to-r from-red-600 to-red-800 text-white font-bold 
                            rounded-lg shadow-[0_0_20px_rgba(220,38,38,0.8)] 
                            hover:shadow-[0_0_35px_rgba(220,38,38,1)] hover:scale-110 transition"
@@ -71,16 +71,16 @@ export default function SpellBookingUI() {
               Book a tarot reading or spell consultation with me!
             </h2>
 
-            <div className="flex justify-end">
-              <Button whatsappLink="https://wa.me/message/6UEZI47SDGS5A1"
-
-                className="relative px-6 py-3 bg-gradient-to-r from-red-500 to-black text-white font-bold 
-                           rounded-lg shadow-[0_0_20px_rgba(239,68,68,0.8)] 
-                           hover:shadow-[0_0_35px_rgba(239,68,68,1)] hover:scale-110 transition"
-              >
-                Schedule Now
-              </Button>
-            </div>
+          <div className="flex justify-end">
+      <button
+        onClick={() => navigate("/reading-booking")}
+        className="relative px-6 py-3 bg-gradient-to-r from-red-500 to-black text-white font-bold 
+                   rounded-lg shadow-[0_0_20px_rgba(239,68,68,0.8)] 
+                   hover:shadow-[0_0_35px_rgba(239,68,68,1)] hover:scale-110 transition"
+      >
+        Schedule Now
+      </button>
+    </div>
           </CardContent>
         </Card>
       </section>
